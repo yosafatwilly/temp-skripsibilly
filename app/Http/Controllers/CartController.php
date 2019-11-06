@@ -95,4 +95,8 @@ class CartController extends Controller
 		$category = $this->category;
 		return view('homepage.detailtransaksi', compact('category', 'transaction', 'transactiondetail'));
 	}
+
+	public function confirm(Request $request){
+
+	}
 }

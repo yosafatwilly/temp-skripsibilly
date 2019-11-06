@@ -39,7 +39,9 @@ Route::get('checkongkir/{tujuan}',function($tujuan){
 Route::post('cart/transaction','CartController@transaction');
 Route::get('cart/myorder','CartController@myorder');
 Route::get('cart/detail/{code}','CartController@detail');
+Route::post('cart/confirm/{code}', 'CartController@confirm')->name('cart.confirm');
 
+//admin
 Route::prefix('admin')->middleware(['auth','oauth:admin'])->group(function(){
     Route::get('media', 'HomeController@media')->name('media.index');
     Route::get('dashboard', 'HomeController@index');
@@ -50,8 +52,9 @@ Route::prefix('admin')->middleware(['auth','oauth:admin'])->group(function(){
     //transaction
     // Route::get('transaction','TransactionController@index')->name('transaction.index');
     Route::resource('transaction', 'TransactionController');
-    Route::get('transaction/s/{code}/{status}','TransactionController@status')->name('transaction.status');
-    Route::get('transaction/c/{code}','TransactionController@cetakpdf')->name('transaction.cetakpdf');
+    Route::get('transaction/statuskirim/{code}/{status}','TransactionController@statusPengiriman')->name('transaction.statuskirim');
+    Route::get('transaction/statusbayar/{code}/{status}','TransactionController@statusPembayaran')->name('transaction.statusbayar');
+    Route::get('transaction/print/{code}','TransactionController@print')->name('transaction.print');
 
     //user
     Route::resource('user', 'UserController');

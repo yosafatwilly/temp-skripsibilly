@@ -45,7 +45,11 @@
               <td>{{ $item->category->name }}</td>
               <td>{{ $item->stock }}</td>
               <td>{{ $item->price }}</td>
-              <td>{{ $item->supplier->name }}</td>
+              @if (!$item->supplier == null)
+                <td>{{ $item->supplier->name }}</td>
+                @else
+                <td>-</td>
+              @endif
               <td>
                  <form action="{{ route('product.destroy',$item->id) }}" method="POST">
                 <a href="{{ url('admin/product/'.$item->id.'/edit') }}" class="btn btn-sm btn-primary">Edit</a>

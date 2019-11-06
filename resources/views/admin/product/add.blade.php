@@ -45,8 +45,8 @@
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Category</label>
-            <select class="form-control" name="category_id">
-              <option value="">Select</option>
+            <select class="form-control" name="category_id" required>
+              <option value="">Pilih Category</option>
               @foreach($categorys as $category)
               <option value="{{ $category->id }}">{{ $category->name }}</option>
               @foreach($category ->children as $sub)
@@ -58,7 +58,7 @@
           <div class="form-group">
             <label for="exampleInputPassword1">Supplier</label>
             <select class="form-control" name="supplier_id">
-              <option value="">Select</option>
+              <option value="" >Pilih Supplier</option>
               @foreach($suppliers as $supplier)
               <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
               @endforeach
@@ -66,7 +66,7 @@
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Photo</label>
-            <input type="file" class="form-control" placeholder="Enter Icon Font Awesome" name="file">
+            <input type="file" class="form-control" placeholder="Enter Icon Font Awesome" name="file" required>
           </div>
         </div>
         <!-- /.box-body -->

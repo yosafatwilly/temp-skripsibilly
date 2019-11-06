@@ -94,8 +94,8 @@
                     <label>Metode Pembayaran</label>
                     <select class="form-control" name="payment" required>
                         <option value="">Pilih Metode Pembayaran</option>
-                        <option value="cod">Cash On Delivery (COD)</option>
-                        <option value="bank_transfer">Transfer Bank</option>
+                        <option value="Cash On Delivery (COD)">Cash On Delivery (COD)</option>
+                        <option value="Bank Transfer">Transfer Bank</option>
                       </select>
                   </div>
                 </div>

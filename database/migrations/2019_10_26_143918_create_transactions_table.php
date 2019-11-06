@@ -37,9 +37,10 @@ class CreateTransactionsTable extends Migration
             $table->json('address');
             $table->string('phone');
             $table->integer('ongkir');
-            $table->enum('payment_method',['cod','bank_transfer']);
+            $table->enum('payment_method',['Cash On Delivery (COD)','Bank Transfer']);
+            $table->json('payment_confirm');
             $table->enum('status_pembayaran',['Lunas','Belum Lunas']);
-            $table->enum('status',['0','1']);
+            $table->enum('status_pengiriman',['Belum Dikirim','Sedang Dikirim', 'Telah Diterima']);
             $table->timestamps();
         });
     }

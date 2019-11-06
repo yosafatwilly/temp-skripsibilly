@@ -67,7 +67,9 @@
           <div class="form-group">
             <label for="exampleInputPassword1">Supplier</label>
             <select class="form-control" name="supplier_id">
+              <option value="" >Pilih Supplier</option>
               @foreach($suppliers as $supplier)
+              
               <option @if($product->supplier_id == $supplier->id)
                 selected="selected"
                 @endif

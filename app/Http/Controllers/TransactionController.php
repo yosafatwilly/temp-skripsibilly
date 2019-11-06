@@ -20,25 +20,24 @@ class TransactionController extends Controller
 		return view('admin.transaction.index',compact('transaction'));
     } 
 
-    public function status($code,$status){
-		if($status == 0){
-			$change = '1';
-		}else{
-			$change = '0';
-		}
-
+    public function statusPengiriman($code, $status){
 		$transaction = Transaction::where('code',$code)->pluck('id')->toArray();
-		Transaction::whereIn('id',$transaction)->update(['status' => $change]);
+		Transaction::whereIn('id',$transaction)->update(['status_pengiriman' => $status]);
+		Alert::success('', 'Status Pengiriman berhasil di perbarui');
+        return redirect('admin/transaction');
+    }
+
+    public function statusPembayaran($code ,$status){
+		$transaction = Transaction::where('code',$code)->pluck('id')->toArray();
+		Transaction::whereIn('id',$transaction)->update(['status_pembayaran' => $status]);
 		Alert::success('', 'Status Pembayaran berhasil di perbarui');
         return redirect('admin/transaction');
     }
     
-    public function cetakpdf($code){
-
-		$data['transaction'] = Transaction::groupBy('code')->orderBy('id','DESC')->where('code',$code)->first();
-		$data['transactiondetail'] = Transaction::orderBy('id','DESC')->where('code',$code)->get();
-		$pdf = PDF::loadView('admin.transaction.cetakpdf', $data);
-		return $pdf->download($data['transaction']->code.'_transactions.pdf');
+    public function print($code){
+		$transaction = Transaction::groupBy('code')->orderBy('id','DESC')->where('code',$code)->first();
+		$transactiondetail = Transaction::orderBy('id','DESC')->where('code',$code)->get();
+		return view('admin.transaction.print',compact('transaction','transactiondetail'));
     }
     
     /**
